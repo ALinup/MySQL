@@ -1,0 +1,102 @@
+建表：
+create table 表名 (
+	字段 数据类型 primary为设置主键，
+	。。。。
+);
+
+插入数据：
+insert into 表名 (字段名，多个字段用逗号隔开,注：如果是每个字段都插入就不用写) values (数据，多个数据用逗号隔开)；
+
+查询当前所有数据库：
+show databases;
+
+使用指定数据库：
+use 数据库名;
+
+查看当前数据库中的表：
+show tables;
+
+查询当前表的所有内容：
+select * from 表名;
+
+删除表中所有字段的数据：
+delete from 表名;
+
+删除一个表：
+drop table 表名;
+
+新增字段：
+alter table 表名 add 字段名 数据类型;
+
+删除字段：
+alter table 表名 drop 字段名;
+
+查询表中指定内容：
+select 字段名（多个字段用逗号隔开） from 表名 where 条件
+
+去重操作（distinct）:
+select distinct 字段名 from 表名 where 条件;
+
+查询结果按照字典顺序：
+1、如果数据库表字段的字符编码是latin1_swedish_ci
+select ... from 表名 order by birary(字段名) asc;
+2、如果数据库表字段的字符编码是utf8_general_ci（常用）
+seletc ... from 表名 where 1=1 order by convert(字段名 using gbk) collate gbk_chinese_ci asc;
+
+查询结果按照指定字段名显示：
+select 字段名 as 字段别名 from 表名 where 条件;
+
+查询匹配的字符串：
+select ... from 表名 where 字段名 like '%或者_'（%：匹配任意子串   _：匹配任意一个字符）
+
+根据条件顺序显示查询结果：
+select ... from 表名 order by 字段名 asc/desc（升序/降序）
+
+查询结果介于两值之间：
+select ... from 表名 where 字段名 between 值1 and 值2;
+
+
+分组聚集（group by）
+聚集函数：平均值avg、最小值min、最大值max、总和sum、计数count
+注意：出现在select语句中但没有被聚集的属性只能是出现在group by子句中的属性
+例子：
+select dept_name,avg(salary) from instructor2 group by dept_name;
+
+having子句（出现group by子句时使用）
+注意：有group by时，select和having子句中出现的属性有所限制；任何出现在having子句中，但没有被聚集的属性必须出现在group by子句中
+select dept_name,avg(salary) as avg_salary from instructor2 group by dept_name having avg(salary)>3000;
+
+集合成员in:测试元组是否是集合的成员    not in:测试元组是否不是集合的成员
+（in和not in操作符用于枚举集合）
+select * from 表名 where 字段名 not in 集合;
+
+嵌套查询:
+示例：
+select * from instructor2 where name in (select name from instructor2 where salary>3000);
+注意：内层查询语句的select对应的属性应与外层查询语句的where对应的属性相同（相当于两层for循环）
+
+集合比较:
+>all:比所有的都大
+<all:比所有的都小
+>=all:大于等于后面集合所有的值
+<>all:等价于not in，不在集合当中
+>some:至少比某一个大
+<some:至少比某一个小
+=some:与某些相等
+>=some:至少大于等于某一个
+<=some:至少小于等于某一个
+<>some:与某些不相等
+示例1：查询工资大于3000的教师姓名
+select * from instructor2 where name =some(select name from instructor2 where salary>3000);
+示例2：查询工资小于等于3000的教师姓名
+select * from instructor2 where name <>all(select name from instructor2 where salary>3000);
+
+空关系测试（exists）:
+
+插入数据：
+
+更新数据：
+示例1：只给工资低于7000元的教师涨工资
+update instructor2 set salary=salary*1.05 where salary<7000;
+示例2：给工资低于7000教师涨5%，大于7000的涨3%
+update instructor2 set salary=case when salary<7000 then salary*1.05 else salary*1.03 end;
