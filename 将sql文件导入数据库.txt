@@ -1,4 +1,0 @@
-登陆mysql控制台
-切换到要导入的数据库
-使用source命令来导入数据库文件
-mysql>source 服务器上sql文件路径
