@@ -1,0 +1,22 @@
+一、导出数据库用mysqldump命令（导出目录为使用该命令的目录）：
+
+1、导出数据：
+
+mysqldump -u用户名 -p密码 数据库名 > 数据库名.sql
+
+二、导入数据库
+
+1、首先建空数据库
+
+mysql>create database 数据库名;
+2、导入数据库
+
+（1）选择数据库
+
+mysql>use 数据库名;
+（2）设置数据库编码
+
+mysql>set names utf8;
+（3）导入数据（注意sql文件的路径）
+
+mysql>source sql文件路径;
