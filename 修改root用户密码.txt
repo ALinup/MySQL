@@ -1,0 +1,13 @@
+方法1：用set password命令
+格式：mysql>set password for 用户名@localhost=password('新密码');
+例子：mysql>set password for root@localhost=password('123');
+
+方法2：用mysqladmin
+格式：mysqladmin -u用户名 -p旧密码 password 新密码
+例子：mysqladmin -uroot -p123456 password 123
+
+方法3：用update直接编辑user表
+首先登陆mysql
+mysql>use mysql;
+mysql>update user set password=password('123') where user='root' and host='localhost';
+mysql>flush privileges;
