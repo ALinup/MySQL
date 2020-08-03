@@ -1,0 +1,14 @@
+Linux中：
+1、编辑文件my.cnf
+vi /etc/my.cnf
+在[mysqld]下面添加以下内容，绕过密码登录：
+skip-grant-tables
+2、重启mysqld服务：
+systemctl restart mysqld
+3、进入mysql进行以下操作：
+[root@main mysql]# mysql
+mysql> use mysql;
+mysql> update mysql.user set authentication_string="" where user="root";   //重置root用户的密码
+mysql> flush privileges;   //刷新权限表
+mysql>  set password for root@localhost=password("新密码");   //为root用户设置新密码
+4、去掉my.cnf文件中的skip-grant-tables,重启mysqld服务即可。
