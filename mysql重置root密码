@@ -12,3 +12,6 @@ mysql> update mysql.user set authentication_string="" where user="root";   //重
 mysql> flush privileges;   //刷新权限表
 mysql>  set password for root@localhost=password("新密码");   //为root用户设置新密码
 4、去掉my.cnf文件中的skip-grant-tables,重启mysqld服务即可。
+
+Windows中：
+进入服务->找到MYSQL服务名，右键点击属性->在上方找到登录选项->修改密码并应用即可
