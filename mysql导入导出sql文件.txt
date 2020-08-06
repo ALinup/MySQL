@@ -23,3 +23,12 @@ mysql>source sql文件路径;
 
 2.2、导入数据库
 mysqldump -u用户名 -p密码 数据库名 < 数据库名.sql
+
+
+mysqldump详解：
+mysqldump -u[用户名] -h[ip] -p[密码] -P[端口号]  数据库名  表名 > 导出的文件名.sql
+mysqldump -uroot -h127.0.0.1 -proot -P3306 education users > d:/user.sql
+
+mysqldump -u[用户名] -h[ip] -p[密码] -P[端口号]  数据库名  表名 < 导出的文件名.sql
+mysqldump -uroot -h127.0.0.1 -proot -P3306 education users < d:/user.sql
+如果导出/入整个数据库，则不需要加表名。
