@@ -1,0 +1,6 @@
+使用navicat for mysql软件
+1、对远程服务器进行如下设置
+登录数据库,进行以下设置即可连接：
+use mysql;
+update user set Host='%' where User='root';
+flush privileges;
