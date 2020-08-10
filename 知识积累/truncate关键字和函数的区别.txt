@@ -1,5 +1,0 @@
-truncate和truncate(X, D):
-TRUNCATE 关键字是用来清空一个表中的数据，但是表格仍然存在，语法如下：
-TRUNCATE TABLE 表格名;
-
-TRUNCATE(X, D) 函数的作用是将一个数字（X）截断为指定的小数位数（D），若 D 为负，则 TRUNCATE(X, D) 函数使小数点左边的 D 位变为 0，若 D 为 0，则返回值没有小数点。
